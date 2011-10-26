@@ -1,7 +1,11 @@
 $(function(){
-	
-	var TILE_SIZE = 30;
+
+	// TODO: depends on "size" parameter (location.search)
+	var params = location.search.replace(/^\?/, '').split('=');
+	console.log('params = %o', params);
 	var PLAYGROUND_SIDE = 10;
+
+	var TILE_SIZE = 30;
 	var PLAYGROUND_PIXEL_SIZE = PLAYGROUND_SIDE * TILE_SIZE;
 	var PLAYGROUND_POSITION = { x:5, y:50 };
 	var PLAYGROUND_ANIMALS = new Array();
@@ -322,9 +326,11 @@ $(function(){
 	};
 	
 	function flushCommit_clear_animals(){
-		$('.flushed').css({ border: '2px solid red' });
+		var flushed = $('.flushed');
 		
-		$.map($('.flushed'), function(element_to_flush){
+		$('#playground').trigger('player_move_flushed', [ flushed ]);
+
+		$.map(flushed, function(element_to_flush){
 			element_to_flush = $(element_to_flush);
 			if (element_to_flush.attr('id').match(/animal-\d-\d-/)) return;
 			
@@ -338,7 +344,7 @@ $(function(){
 				this.animate({zoom:2, top:PLAYGROUND_PIXEL_SIZE/3, left:PLAYGROUND_PIXEL_SIZE/3}, 500, function(){
 					var animal = $(this).data('animal');
 					$(this).remove();
-
+					
 					if (!animal){
 						//debugger;
 					}
@@ -558,7 +564,9 @@ $(function(){
 	fillPlayground();
 	resetFlushQueue();
 	
-    $.playground().startGame();
+    $.playground().startGame(function(){
+    	
+    });
     
     
     setTimeout(function(){ lookForFlush(); }, 1000);

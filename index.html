@@ -1,14 +1,34 @@
 <html>
     <head>
-        <script src="lib/jquery-1.6.2.min.js"></script>
-        <script src="lib/jquery-ui-1.8.16.custom.min.js"></script>
-        <script src="lib/jquery.easing.1.3.js"></script>
-        <script src="lib/jquery.gamequery.js"></script>
-        <script src="lib/jquery.draggableXYE.js"></script>
-        <script src="src/game.js"></script>
+        <script type="text/javascript" src="lib/jquery-1.6.2.min.js"></script>
+        <script type="text/javascript" src="lib/jquery-ui-1.8.16.custom.min.js"></script>
+        <script type="text/javascript" src="lib/jquery.easing.1.3.js"></script>
+        <script type="text/javascript" src="lib/jquery.draggableXYE.js"></script>
+        <script type="text/javascript" src="lib/jquery.cookie.js"></script>
+
+		<script type="text/javascript" src="lib/soundmanager2-nodebug-jsmin.js"></script>
+		<!-- <script type="text/javascript" src="lib/soundmanager2.js"></script> -->
+		<script type="text/javascript" src="lib/jquery.gamequery.js"></script>
+		<script type="text/javascript" src="lib/jquery.gamequery.soundwrapper.soundmanager2.js"></script>
+
+        <script type="text/javascript" src="src/sounds.js"></script>
+        <script type="text/javascript" src="src/board.js"></script>
+        <script type="text/javascript" src="src/flashmsg.js"></script>
+        <script type="text/javascript" src="src/game.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="res/css/board.css">
+
+		<title>Oh My Zou</title>
     </head>
     <body>
-        <h2>Oh My Zou !</h2>
-        <div id="playground" style="width: 400px; height: 400px; background: white;"></div>
+    	<section id="board">
+	        <h2 id="title">Oh My Zou !</h2>
+	        <button id="mute" title="mute">
+	        	<img class="mute" width="20" src="res/img/unmuted.jpg">
+	        	<img class="unmute" width="20" src="res/img/muted.jpg">
+	        </button>
+	        <span id="score"></span>
+	        <div id="playground" style="width: 400px; height: 400px; background: white;"></div>
+		</section>
     </body>
 </html>
