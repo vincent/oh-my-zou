@@ -6,8 +6,9 @@
         <script type="text/javascript" src="lib/jquery.draggableXYE.js"></script>
         <script type="text/javascript" src="lib/jquery.cookie.js"></script>
 
-		<script type="text/javascript" src="lib/soundmanager2-nodebug-jsmin.js"></script>
-		<!-- <script type="text/javascript" src="lib/soundmanager2.js"></script> -->
+		<!--  --><script type="text/javascript" src="lib/soundmanager2-nodebug-jsmin.js"></script> <!-- -->
+		<!-- -- ><script type="text/javascript" src="lib/soundmanager2.js"></script> <!-- -->
+		
 		<script type="text/javascript" src="lib/jquery.gamequery.js"></script>
 		<script type="text/javascript" src="lib/jquery.gamequery.soundwrapper.soundmanager2.js"></script>
 
@@ -15,19 +16,34 @@
         <script type="text/javascript" src="src/board.js"></script>
         <script type="text/javascript" src="src/flashmsg.js"></script>
         <script type="text/javascript" src="src/game.js"></script>
+        <script type="text/javascript" src="src/levels.js"></script>
 
         <link rel="stylesheet" type="text/css" href="res/css/board.css">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 		<title>Oh My Zou</title>
     </head>
     <body>
-    	<section id="board">
-	        <h2 id="title">Oh My Zou !</h2>
-	        <button id="mute" title="mute">
-	        	<img class="mute" width="20" src="res/img/unmuted.jpg">
-	        	<img class="unmute" width="20" src="res/img/muted.jpg">
-	        </button>
-	        <span id="score"></span>
+    	<section id="board" style="margin: 0 auto; width: 310px; padding: 0 0 40px 0;">
+    		<header id="board_header">
+		        <h2 id="title">Oh My Zou !</h2>
+		        <h3 id="level_title">level 1</h3>
+		        
+		        <button id="mute" title="mute">
+		        	<img class="mute" width="20" src="res/img/unmuted.png">
+		        	<img class="unmute" width="20" src="res/img/muted.png">
+		        </button>
+		        <span id="score"></span>
+		        <select id="boardsize">
+		        	<option  value="5"> 5</option>
+		        	<option  value="8"> 8</option>
+		        	<option value="10">10</option>
+		        </select>
+
+		        <hr id="board_separator">
+			</header>
+	        
 	        <div id="playground" style="width: 400px; height: 400px; background: white;"></div>
 		</section>
     </body>

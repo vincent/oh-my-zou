@@ -2,19 +2,25 @@
 soundManager.url = 'res/swf';
 soundManager.flashVersion = 9;
 soundManager.useFlashBlock = false;
+soundManager.debug = location.href.indexOf('debug=1') > 0;
 	
+setTimeout(function(){
+	$('#sm2-container').attr('style', 'z-index: 10000; position: absolute; width: 6px; height: 6px;');
+}, 3000);
+
 $(function(){
 	
-	SOUNDS = null;
+	SOUNDS = {};
 	MUTE = $.cookie('muted')==1 && $('#mute').addClass('muted') ? 1 : 0;
 	
 	function play(sound, data){
-		SOUNDS[sound].play(data);
-	};
-	
-	function playMusic(){
-		// looping is not implemented ?
-		SOUNDS['music'].play();
+		if (sound in SOUNDS){
+			if (sound == 'music') data.loop = true;
+			SOUNDS[sound].play(data);
+		}
+		else{
+			console.log('unknown sound %o', sound);
+		}
 	};
 	
 	function mute(toggle){
@@ -36,31 +42,32 @@ $(function(){
 			$('#mute').removeClass('muted');
 		};
 	}
+	
+	function loadSounds(soundpack){
+		soundManager.onready(function() {
+			$.each(soundpack, function(sound){
+				if (sound in SOUNDS) return;
+				
+				SOUNDS[sound] = new $.gameQuery.SoundWrapper(soundpack[sound], false);
+				SOUNDS[sound].load();
+				console.log("loading sound %o : %o %o %o ", sound, soundpack[sound], SOUNDS[sound].id, SOUNDS[sound]);
+			});
+		});
+	}
 
 	// register sound events
 	$('#playground').bind('play', function(event, sound, data){
 		play(sound, data);
+	});
+	$('#playground').bind('load_soundpack', function(event, data){
+		loadSounds(data);
 	});
 
 	// mute button
 	$('#mute').click(mute);
 	
 	soundManager.onready(function() {
-	
-		SOUNDS = {
-			music : new $.gameQuery.SoundWrapper('res/sounds/beat.mp3', true),
-			bad_move : new $.gameQuery.SoundWrapper('res/sounds/music.mp3', false),
-			good_move : new $.gameQuery.SoundWrapper('res/sounds/splash.mp3', false),
-			very_good_move : new $.gameQuery.SoundWrapper('res/sounds/splash.mp3', false)
-		};
-		
-		for (sound in SOUNDS) {
-			SOUNDS[sound].load();
-			console.log("loading sound %o : %o", SOUNDS[sound].id, sound);
-		}
-
-		playMusic();
+        
 	});
-
 	
 });

@@ -2,8 +2,8 @@ $(function(){
 	
 	function flashMessage(text) {
 		var id = parseInt(Math.random()*10000);
-		$('#playground').append('<span id="flash_message_'+id+'" class="flash_message">'+text+'</span>');
-		$('#flash_message_'+id).animate({ zoom: 2 }, function(){
+		$('#board_header').append('<span id="flash_message_'+id+'" class="flash_message">'+text+'</span>');
+		$('#flash_message_'+id).animate({ fontSize: 30 }, function(){
 			$(this).remove();
 		});
 	}

@@ -2,13 +2,27 @@
 body {
 	margin: 0;
 	padding: 0;
+	background: #444;
+}
+
+#board_header {
+	height: 50px;
+	padding: 0 10px;
 }
 
 #board {
-	padding: 4px 0 0 0;
-	float: left;
+	background: #efefef;
 	overflow: hidden;
+	cursor: url(../img/hand.png);
+	
+	height: 380px;
 }
+.dragging #board {
+	cursor: url(../img/hand_pick.png);
+}	
+.goodmoved #board {
+	cursor: url(../img/hand_goodmove.png);
+}	
 
 #title {
 	float: left;
@@ -31,9 +45,36 @@ body {
 
 #score {
 	float: right;
+	margin: 0 10px;
 	font-family: sans-serif;
+}
+
+#boardsize  {
+	font-size: 8px;
+	float: right;
+	clear: both;
+	display: none;
+}
+
+#board_separator {
+	clear: both;
+	margin: 5px 0;
+}
+
+#playground {
+	background: transparent !important;
 }
 
 .flash_message {
 	z-index: 1000;
+}
+
+/* SOUNDMANAGER2 Flash crap */
+#sm2-container {
+	top: 0px !important;
+	left: 0px !important;
+}
+#sm2movie {
+	height: 1px !important;
+	width: 1px !important;
 }
